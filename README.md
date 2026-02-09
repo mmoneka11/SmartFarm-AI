@@ -98,6 +98,8 @@ smartfarm-ai/
 │   └── app.py   # Streamlit UI
 │
 └── README.md
+```
+---
 
 ## 👩‍💻 Team 
 
