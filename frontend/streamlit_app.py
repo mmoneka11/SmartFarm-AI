@@ -1,21 +1,52 @@
+# Streamlit frontend for SmartFarm AI
+
+"""
+This Streamlit app serves as the user interface for the SmartFarm AI system.
+Farmers can upload images of crops or seeds, select analysis type, and receive AI-powered insights and recommendations in their local language, along with audio advice. 
+
+## Backend workflow:
+    Streamlit UI
+    ↓
+    POST /analyze
+    ↓
+    routes.py
+    ↓
+    image_processing.py
+    ↓
+    gemini_client.py  (Gemini Vision → JSON)
+    ↓
+    voice_service.py  (gTTS → mp3)
+    ↓
+    Response:
+    {
+    crop_name
+    disease_name
+    confidence
+    description
+    recommended_pesticide
+    message
+    audio_file
+    }
+"""
 import streamlit as st
 import requests
-from PIL import Image
-import io
 import os
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-SMARTFORM_LOGO_PATH = os.path.join(BASE_DIR, "assets", "smartform_logo.png")
-TEAM_LOGO_PATH = os.path.join(BASE_DIR, "assets", "team_logo.png")
 
-# --- Configuration ---
+# ---------------- CONFIG ----------------
 BACKEND_URL = "http://127.0.0.1:8000"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# --- Page Setup ---
+SMARTFARM_LOGO = os.path.join(BASE_DIR, "assets", "smartform_logo.png")
+TEAM_LOGO = os.path.join(BASE_DIR, "assets", "team_logo.png")
+
 st.set_page_config(
-    page_title="SmartFarm AI",
-    page_icon="🌱",
+    page_title="SmartFarm AI 👨‍🌾",
+    page_icon=SMARTFARM_LOGO, 
     layout="centered",
-    initial_sidebar_state="collapsed")
+    initial_sidebar_state="collapsed"
+)
+
+# st.title("🌱 SmartFarm AI Assistant")
 
 # ---------------- THEME ----------------
 if "dark" not in st.session_state:
@@ -24,30 +55,30 @@ if "dark" not in st.session_state:
 def toggle_theme():
     st.session_state.dark = not st.session_state.dark
 
-st.sidebar.button("🌗 Dark / Light Mode", on_click=toggle_theme)
+st.sidebar.button("🌗 Toggle Theme", on_click=toggle_theme)
 
 if st.session_state.dark:
     st.markdown("""
         <style>
             body { background-color: #0e1117; color: white; }
-            .card { background: #161b22; padding: 22px; border-radius: 16px; }
+            .card { background:#161b22; padding:10px; border-radius:10px; }
         </style>
     """, unsafe_allow_html=True)
 else:
     st.markdown("""
         <style>
-            .card { background: #f7f9fb; padding: 22px; border-radius: 16px; }
+            .card { background:#f6f8fa; padding:10px; border-radius:10px; }
         </style>
     """, unsafe_allow_html=True)
 
 # ---------------- HEADER ----------------
 c1, c2 = st.columns([1, 6])
 with c1:
-    st.image(SMARTFORM_LOGO_PATH, width=85)
+    st.image(SMARTFARM_LOGO, width=90)
 with c2:
     st.markdown("""
-        <h1>SmartFarm AI 🌱</h1>
-        <p>AI-powered crop & seed analysis with voice assistance</p>
+        <h2>SmartFarm AI 👨‍🌾</h2>
+        <p> AI-powered pocket assistant for smart agriculture decisions</p>
     """, unsafe_allow_html=True)
 
 st.divider()
@@ -55,12 +86,12 @@ st.divider()
 # ---------------- MAIN ----------------
 left, right = st.columns(2)
 
-# -------- LEFT PANEL --------
+# -------- LEFT --------
 with left:
     st.markdown("<div class='card'>", unsafe_allow_html=True)
     st.subheader("📤 Upload Image")
 
-    analysis_mode = st.radio(
+    mode = st.radio(
         "Select Analysis Type",
         ["🌿 Crop Disease Analysis", "🌾 Seed Quality Analysis"]
     )
@@ -71,63 +102,62 @@ with left:
     )
 
     image = st.file_uploader(
-        "Upload image (leaf / seed)",
+        "Upload image",
         type=["jpg", "jpeg", "png"]
     )
 
     seed_type = None
-    if analysis_mode.startswith("🌾"):
-        seed_type = st.text_input("Seed Type (optional)", value="Unknown")
+    if "Seed" in mode:
+        seed_type = st.text_input("Seed Type", "Unknown")
 
-    analyze_btn = st.button("🔍 Analyze")
+    analyze = st.button("🔍 Analyze")
     st.markdown("</div>", unsafe_allow_html=True)
 
-# -------- RIGHT PANEL --------
+# -------- RIGHT --------
 with right:
     st.markdown("<div class='card'>", unsafe_allow_html=True)
-    st.subheader("📊 AI Result")
+    st.subheader("📊 Result")
 
-    if analyze_btn:
+    if analyze:
         if not image:
             st.warning("Please upload an image")
         else:
-            with st.spinner("SmartFarm AI is analyzing..."):
-                if analysis_mode.startswith("🌿"):
-                    response = requests.post(
-                        f"{BACKEND_URL}//analyze-disease",
-                        files={"image": image}
+            with st.spinner("Analyzing..."):
+                if "Crop" in mode:
+                    res = requests.post(
+                        f"{BACKEND_URL}/api/analyze-disease",
+                        files={"image": image},
+                        params={"country": country, "lang": "ur"}
                     )
                 else:
-                    response = requests.post(
-                        f"{BACKEND_URL}/analyze-seed",
+                    res = requests.post(
+                        f"{BACKEND_URL}/api/analyze-seed",
                         files={"image": image},
-                        data={"seed_type": seed_type}
+                        # data={"seed_type": seed_type},
+                        params={"seed_type": seed_type, "lang": "ur"}
                     )
 
-            if response.status_code != 200:
-                st.error("Backend error occurred")
+            if res.status_code != 200:
+                st.error("Backend error")
             else:
-                data = response.json()
-                st.image(image, use_column_width=True)
+                data = res.json()
+                st.image(image, width="content")
 
-                # ---- CROP DISEASE OUTPUT ----
-                if analysis_mode.startswith("🌿"):
+                if "Crop" in mode:
                     st.markdown(f"**🌱 Crop:** {data['crop_name']}")
                     st.markdown(f"**🦠 Disease:** {data['disease_name']}")
                     st.markdown(f"**📊 Confidence:** {data['confidence']}")
-                    st.markdown(f"**📝 Description:** {data['description']}")
                     st.markdown(f"**🧪 Pesticide:** {data['recommended_pesticide']}")
-                    st.markdown(f"**🗣 Urdu Advice:** {data['urdu_message']}")
-                    st.audio(f"{BACKEND_URL}/{data['audio_file']}")
-
-                # ---- SEED QUALITY OUTPUT ----
+                    st.markdown(f"**🗣 Urdu Advice:** {data['message']}")
+                    st.audio(f"{BACKEND_URL}/{data['audio_url']}")
                 else:
                     st.markdown(f"**🌾 Seed Type:** {data['seed_type']}")
                     st.markdown(f"**⭐ Quality:** {data['quality']}")
                     st.markdown(f"**📊 Confidence:** {data['confidence']}")
                     st.markdown(f"**🔍 Observations:** {data['observations']}")
                     st.markdown(f"**🌱 Sowing Advice:** {data['sowing_recommendation']}")
-                    st.markdown(f"**🗣 Farmer Message:** {data['message']}")
+                    st.markdown(f"**🗣 Message:** {data['message']}")
+                    
 
     st.markdown("</div>", unsafe_allow_html=True)
 
@@ -135,10 +165,7 @@ with right:
 st.divider()
 f1, f2 = st.columns([6, 1])
 with f1:
-    st.markdown(
-        "<p style='opacity:0.6;'>SmartFarm AI • Helping farmers worldwide 🌍</p>",
-        unsafe_allow_html=True
-    )
+    st.markdown("<p style='opacity:0.6;'>SmartFarm AI © 2026 • For Farmers 🌍</p>", unsafe_allow_html=True)
 with f2:
-    st.image(TEAM_LOGO_PATH, width=40)
-    st.caption("Developed by Team IGOGs")
+    st.image(TEAM_LOGO, width=28)
+    st.caption("Develpoped by Team IGOGs")

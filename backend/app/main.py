@@ -5,8 +5,8 @@ from dotenv import load_dotenv
 from app.services.image_processing import validate_image, preprocess_image
 from app.api.routes import router
 from app.api.schemas import DiseaseResponse, SeedResponse
-from backend.app.services.gemini_client import analyze_crop_disease, analyze_seed_quality
-from backend.app.services.voice_service import text_to_voice    
+from app.services.gemini_client import analyze_crop_disease, analyze_seed_quality
+from app.services.voice_service import text_to_voice    
 import os
 
 load_dotenv()

@@ -23,7 +23,7 @@ async def analyze_disease(
     processed = preprocess_image(image_obj)
 
     result = analyze_crop_disease(processed, country, lang)
-    result["audio_url"] = text_to_voice(result["message"], lang)
+    result["audio_url"] = text_to_voice(result["message"], lang=lang)
 
     return result
 
