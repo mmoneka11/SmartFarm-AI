@@ -107,8 +107,8 @@ smartfarm-ai/
 | Name | Role & Contribution | GitHub |
 |-----|------|--------|
 | Moneka Meghwar |Team Lead, Frontend Developer| https://github.com/mmoneka11 |
-| Kashmala Asif |  Backend Developer, API Integration | https://github.com/kashmalaasif |
-| Umaima |  Documentation Lead, Development Support| https://github.com/umaima |
+| Kashmala Saddiqui |  Backend Developer, API Integration | https://github.com/kashmalaasif |
+| Umaima Rizwan |  Documentation Lead, Development Support| https://github.com/umaima |
 
 ---
 
