@@ -12,6 +12,7 @@
 **SmartFarm AI** is a global, AI-powered agriculture assistant that analyzes **crop diseases** and **seed quality** from images and delivers **actionable insights with voice support** using **Gemini multimodal AI**.
 
 It is designed to help farmers, researchers, and agri-tech innovators make faster and smarter decisions—anywhere in the world.
+
 ---
 
 ## 🚀 Features
