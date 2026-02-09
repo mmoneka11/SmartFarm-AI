@@ -85,18 +85,19 @@ smartfarm-ai/
 ├── backend/
 │   ├── main.py
 │   ├── app/
-│   │   ├── api/
-│   │   │   ├── routes.py
-│   │   │   └── schemas.py
-│   │   ├── services/
-│   │   │   ├── gemini_client.py
-│   │   │   ├── image_processing.py
-│   │   │   └── voice_service.py
-│   │   └── audio/
-│   └── .env
+│       ├── api/
+│       │   ├── routes.py
+│       │   └── schemas.py
+│       ├── services/
+│       │   ├── gemini_client.py
+│       │   ├── image_processing.py
+│       │   └── voice_service.py
+│       └── audio/
+│   
 │
 ├── frontend/
-│   └── app.py   # Streamlit UI
+│   └── streamlit_app.py   # Streamlit UI
+|   └── assets
 │
 └── README.md
 ```
@@ -128,9 +129,8 @@ smartfarm-ai/
 ---
 
 ## 📜 License
-This project is for educational, research, and demonstration purposes. MIT License
+This project is for educational, research, and demonstration purposes | MIT License
 
 ---
 
-**✨ Developed by the IGOGs Team**
- Building intelligent tools for sustainable agriculture
+**✨ Developed by the IGOGs Team** | Building intelligent tools for sustainable agriculture
