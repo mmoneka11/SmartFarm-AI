@@ -9,7 +9,11 @@
   <img src="https://img.shields.io/badge/Dotenv-Environment-yellow"/>
 </p>
 
-**SmartFarm AI** is a global, AI-powered agriculture assistant that analyzes **crop diseases** and **seed quality** from images and delivers **actionable insights with voice support** using **Gemini multimodal AI**.
+
+---
+## 🌍 Overview
+
+**SmartFarm AI** is a **global AI-powered agriculture pocket assistant** that analyzes **crop diseases** and **seed quality** from images and delivers **actionable insights with voice support** using **Gemini multimodal AI**.
 
 It is designed to help farmers, researchers, and agri-tech innovators make faster and smarter decisions—anywhere in the world.
 
@@ -17,12 +21,12 @@ It is designed to help farmers, researchers, and agri-tech innovators make faste
 
 ## 🚀 Features
 
-### 🌿 Crop Disease Detection
+### 🌿 Crop Disease Analysis
 - Upload a crop leaf image
 - Identify crop type and possible disease
 - Confidence score (0–1)
 - Clear disease description
-- Recommended pesticide/treatment
+- Treatment & pesticide recommendations
 - Farmer-friendly guidance
 
 ### 🌾 Seed Quality Analysis
@@ -57,6 +61,34 @@ Gemini is used to:
 - Enable downstream voice generation
 
 ⚠️ No heuristic or rule-based logic is used — all insights come directly from Gemini.
+
+
+---
+
+## 🧩 Architecture Diagram
+
+```mermaid
+flowchart TD
+    A[**User**<br/>Browser / Mobile] --> B[**Streamlit UI**<br/>SmartFarm AI Dashboard]
+
+    B -->|Upload Image + Optional Data| C[**FastAPI Backend**]
+
+    C --> D[**Image Validation**<br/>Format • Size • Quality]
+    D --> E[**Image Preprocessing**<br/>Resize • Normalize • Enhance]
+
+    E --> F[**Gemini AI Client**<br/>Vision + Reasoning]
+    F --> G[**Crop / Seed Analysis**<br/>Disease • Growth • Recommendations]
+
+    G --> H[**JSON Structured Response**<br/>Confidence • Insights • Actions]
+
+    H --> I[**Text Response**<br/>Farmer-Friendly Explanation]
+    H --> J[**Voice Generation**<br/>gTTS / Audio Service]
+
+    I --> K[**Final API Response / UI Output**<br/>Text + Confidence + Audio]
+    J --> K
+
+    K --> L[**Farmer Decision Support**<br/>Smart Farming Insights ]
+```
 
 ---
 
@@ -109,7 +141,7 @@ smartfarm-ai/
 |-----|------|--------|
 | Moneka Meghwar |Team Lead, Frontend Developer| https://github.com/mmoneka11 |
 | Kashmala Saddiqui |  Backend Developer, API Integration | https://github.com/kashmalaasif |
-| Umaima Rizwan |  Documentation Lead, Development Support| https://github.com/umaima |
+| Umaima Rizwan |  Documentation Lead, Development Support| https://github.com/umaim691 |
 
 ---
 
@@ -123,7 +155,7 @@ smartfarm-ai/
 ## 📌 Future Enhancements
 - Mobile App (Flutter)
 - Multi-language farmer support
-- Offline disease detection
+- Offline AI inference
 - Crop advisory dashboard
 
 ---
@@ -133,4 +165,35 @@ This project is for educational, research, and demonstration purposes | MIT Lice
 
 ---
 
-**✨ Developed by the IGOGs Team** | Building intelligent tools for sustainable agriculture
+## 🙏 Acknowledgements
+
+### Hackathon
+We would like to acknowledge the **Google Gemini 3 Hackathon** hosted on **Devpost**, for providing the platform and opportunity to build and showcase **SmartFarm AI**.
+
+[![Gemini 3 Hackathon (Devpost)](https://img.shields.io/badge/Hackathon-Gemini%203%20(Devpost)-blueviolet?logo=google)](https://gemini3.devpost.com/)
+
+
+This project was built as part of the **Google Gemini 3 Hackathon**, leveraging modern AI technologies to solve real-world agricultural challenges and promote sustainable farming worldwide 🌱🌍
+This hackathon inspired us to explore the capabilities of **Gemini 3 multimodal AI** in addressing real-world agricultural challenges. The event encouraged innovation, collaboration, and the development of impactful AI-driven solutions for sustainable farming worldwide 🌱🌍
+
+### Community & Open-source Tools
+Our sincere thanks to the communities and projects that made this work possible:
+
+- **Google Gemini AI** — https://ai.google.dev/  
+- **FastAPI Community** — https://fastapi.tiangolo.com/  
+- **Streamlit Team** — https://streamlit.io/  
+- **Open-source contributors** — Thank you to the many maintainers and authors of libraries we used.
+
+These communities, tools, and events inspired and enabled the development of SmartFarm AI, helping us bring practical AI solutions to agriculture worldwide 🌱🌍
+
+---
+## 🤝 Contributing
+
+We welcome contributions! Please open issues or pull requests.
+
+⭐ **Support this project:** If you find this project useful, please star the repo!
+[![GitHub stars](https://img.shields.io/github/stars/mmoneka11/CropGuard-AI?style=social)](https://github.com/mmoneka11/CropGuard-AI/stargazers)
+
+---
+
+<p align="center"> 🌾 <b>Developed with ❤️ by the IGOGs Team</b><br> Building AI for Sustainable Agriculture ✨ </p> ```
