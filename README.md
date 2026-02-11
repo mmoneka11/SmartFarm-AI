@@ -6,8 +6,7 @@
 </p>
 
 <h1 align="center">
-  <img src="assets/smartfarm_logo.png" width="40" />
-  SmartFarm AI
+  <img src="assets/smartfarm_logo.png" width="40" /> SmartFarm AI
 </h1>
 
 <p align="center">
@@ -24,11 +23,7 @@
 
 
 ---
-## 🌍 Overview
 
-**SmartFarm AI** is a **global AI-powered agriculture pocket assistant** that analyzes **crop diseases** and **seed quality** from images and delivers **actionable insights with voice support** using **Gemini multimodal AI**.
-
----
 ## 🌍 Overview
 
 **SmartFarm AI** is a **global AI-powered agriculture pocket assistant** that analyzes **crop diseases** and **seed quality** from images and delivers **actionable insights with voice support** using **Gemini multimodal AI**.
@@ -245,4 +240,4 @@ This project is for educational, research, and demonstration purposes | MIT Lice
 
 ---
 
-<p align="center"> 🌾 <b>Developed with ❤️ by the IGOGs Team</b><br> Building AI for Sustainable Agriculture ✨ </p> ```
+<p align="center"> 🌾 <b>Developed with ❤️ by the IGOGs Team</b><br> Building AI for Sustainable Agriculture ✨ </p> 
