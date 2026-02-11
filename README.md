@@ -35,12 +35,10 @@ It is designed to help farmers, researchers, and agri-tech innovators make faste
 ## 🚀 Features
 
 ### 🌿 Crop Disease Analysis
-### 🌿 Crop Disease Analysis
 - Upload a crop leaf image
 - Identify crop type and possible disease
 - Confidence score (0–1)
 - Clear disease description
-- Treatment & pesticide recommendations
 - Treatment & pesticide recommendations
 - Farmer-friendly guidance
 
@@ -108,33 +106,6 @@ flowchart TD
 
 ---
 
-## 🧩 Architecture Diagram
-
-```mermaid
-flowchart TD
-    A[**User**<br/>Browser / Mobile] --> B[**Streamlit UI**<br/>SmartFarm AI Dashboard]
-
-    B -->|Upload Image + Optional Data| C[**FastAPI Backend**]
-
-    C --> D[**Image Validation**<br/>Format • Size • Quality]
-    D --> E[**Image Preprocessing**<br/>Resize • Normalize • Enhance]
-
-    E --> F[**Gemini AI Client**<br/>Vision + Reasoning]
-    F --> G[**Crop / Seed Analysis**<br/>Disease • Growth • Recommendations]
-
-    G --> H[**JSON Structured Response**<br/>Confidence • Insights • Actions]
-
-    H --> I[**Text Response**<br/>Farmer-Friendly Explanation]
-    H --> J[**Voice Generation**<br/>gTTS / Audio Service]
-
-    I --> K[**Final API Response / UI Output**<br/>Text + Confidence + Audio]
-    J --> K
-
-    K --> L[**Farmer Decision Support**<br/>Smart Farming Insights ]
-```
-
----
-
 ## 🏗️ Tech Stack
 
 ### Backend
@@ -186,7 +157,6 @@ smartfarm-ai/
 | Moneka Meghwar |Team Lead, Frontend Developer| https://github.com/mmoneka11 |
 | Kashmala Saddiqui |  Backend Developer, API Integration | https://github.com/kashmalaasif |
 | Umaima Rizwan |  Documentation Lead, Development Support| https://github.com/umaim691 |
-| Umaima Rizwan |  Documentation Lead, Development Support| https://github.com/umaim691 |
 
 ---
 
@@ -200,7 +170,6 @@ smartfarm-ai/
 ## 📌 Future Enhancements
 - Mobile App (Flutter)
 - Multi-language farmer support
-- Offline AI inference
 - Offline AI inference
 - Crop advisory dashboard
 
