@@ -30,11 +30,10 @@
 
 It is designed to help farmers, researchers, and agri-tech innovators make faster and smarter decisions—anywhere in the world.
 
----
 
-## 🚀 Features
+### 🚀 Features
 
-### 🌿 Crop Disease Analysis
+#### 🌿 Crop Disease Analysis
 - Upload a crop leaf image
 - Identify crop type and possible disease
 - Confidence score (0–1)
@@ -42,19 +41,19 @@ It is designed to help farmers, researchers, and agri-tech innovators make faste
 - Treatment & pesticide recommendations
 - Farmer-friendly guidance
 
-### 🌾 Seed Quality Analysis
+#### 🌾 Seed Quality Analysis
 - Upload seed images
 - Detect seed quality (High / Medium / Low)
 - Visual observations (damage, color, defects)
 - Sowing recommendations
 - Confidence-based assessment
 
-### 🔊 Voice Assistance
+#### 🔊 Voice Assistance
 - AI-generated guidance converted into audio
 - Hands-free and field-friendly usage
 - Supports multilingual expansion
 
-### 🎨 Modern UI
+#### 🎨 Modern UI
 - Built with Streamlit
 - Light & Dark theme support
 - Clean, professional SmartFarm branding
@@ -78,7 +77,7 @@ Gemini is used to:
 
 ---
 
-## 🧩 Architecture Diagram
+## ⚙️ Architecture Diagram
 
 ```mermaid
 flowchart TD
@@ -130,27 +129,40 @@ flowchart TD
 smartfarm-ai/
 │
 ├── backend/
-│   ├── main.py
-│   ├── app/
+│   └── app/
+│       ├── __init__.py
 │       ├── api/
+│       │   ├── __init__.py
 │       │   ├── routes.py
 │       │   └── schemas.py
+│       │
 │       ├── services/
+│       │   ├── __init__.py
 │       │   ├── gemini_client.py
 │       │   ├── image_processing.py
 │       │   └── voice_service.py
-│       └── audio/
-│   
+│       │
+│       └── test-data/
 │
 ├── frontend/
-│   └── streamlit_app.py   # Streamlit UI
-|   └── assets
+│   ├── __init__.py
+│   └── streamlit_app.py
 │
-└── README.md
+│── assets/
+│   │── banner.png
+│   │── team_logo.png
+│   └── smartfarm_logo.png
+|
+├── .env
+├── .gitignore
+├── LICENSE
+├── README.md
+├── requirements.txt
+└── run_all.py
 ```
 ---
 
-## 👩‍💻 Team 
+## 👥 Team 
 
 | Name | Role & Contribution | GitHub |
 |-----|------|--------|
