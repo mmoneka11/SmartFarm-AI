@@ -4,6 +4,13 @@
 # Environment variables
 .env
 
+# Uploaded images / audio
+*.png
+*.jpg
+*.jpeg
+*.mp3
+*.wav
+
 # Python cache
 __pycache__/
 *.pyc
